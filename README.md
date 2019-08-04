@@ -6,7 +6,7 @@ To run: download the app and navigate to it in terminal - type ng-serve in the m
 
 # Code Notes
 
-logic for form in 
+logic for form in:
 
 app/form.component.ts
 app/form.component.html
