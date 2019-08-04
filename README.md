@@ -1,6 +1,6 @@
 # DemoApp
 
-This project serves as a front end angular app for using a dotnet docker. 
+This project serves as a front end angular app for using a dotnet container. 
 
 To run: download the app and navigate to root and use the command:
 `ng-serve`
