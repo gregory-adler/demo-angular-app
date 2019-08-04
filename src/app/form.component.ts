@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "./user";
@@ -9,48 +9,43 @@ import { User } from "./user";
   templateUrl: "./form.component.html",
   styleUrls: ["./form.component.css"]
 })
+// Basic Form
 @Injectable()
 export class FormComponent {
   formComponent = this.fb.group({
-    firstName: [""],
-    lastName: [""],
-    emailAddress: [""]
+    username: [""],
+    emailAddress: [""],
+    password: [""]
   });
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   onSubmit() {
-    // create user
-    var testUser = new User(
-      this.formComponent.value.firstName,
-      this.formComponent.value.lastName,
-      this.formComponent.value.emailAddress
-    );
-
     this.postUser("string");
   }
 
-  /** POST: add a user to the docker */
+  /** POST: user to docker */
+  // url: "http://0.0.0.0:5010/submit/ReceiveUser"
   postUser(a) {
-    console.log("http://0.0.0.0:5010/submit/ReceiveUser");
-    // https://localhost:5009/submit/ReceiveUser
-
     return this.http
       .post<String>(
         "http://0.0.0.0:5010/submit/ReceiveUser",
-        this.formComponent.value.firstName +
+        this.formComponent.value.username +
           "\n" +
-          this.formComponent.value.lastName +
+          this.formComponent.value.emailAddress +
           "\n" +
-          this.formComponent.value.emailAddress
+          this.formComponent.value.password
       )
       .subscribe(
+        //success
         val => {
           console.log("POST call successful value returned in body", val);
         },
+        //error
         response => {
           console.log("POST call in error", response);
         },
+        // return
         () => {
           console.log("The POST observable is now completed.");
         }

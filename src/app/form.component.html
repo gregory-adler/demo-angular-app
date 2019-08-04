@@ -1,14 +1,15 @@
 <form [formGroup]="formComponent">
+  <label>Username: </label>
+  <input class="form-control" formControlName="Username" /> <br />
+  <br />
 
-	<label>First Name: </label>
-	<input class="form-control" formControlName="firstName"> <br> <br>
+  <label>Email address: </label>
+  <input class="form-control" formControlName="emailAddress" /> <br />
+  <br />
 
-	<label>Last Name: </label>
-	<input class="form-control" formControlName="lastName"> <br> <br>
+  <label>Password: </label>
+  <input class="form-control" formControlName="password" /> <br />
+  <br />
 
-	<label>Email Address: </label>
-	<input class="form-control" formControlName="emailAddress"> <br> <br>
-
-	<button (click)="onSubmit()">Update Profile</button>
-	
+  <button (click)="onSubmit()">Update Profile</button>
 </form>
