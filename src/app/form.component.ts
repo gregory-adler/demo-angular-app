@@ -20,13 +20,17 @@ export class FormComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
+  askUser = true;
+  loaded = false;
+  username = "";
+
   onSubmit() {
-    this.postUser("string");
+    this.postUser();
   }
 
   /** POST: user to docker */
   // url: "http://0.0.0.0:5010/submit/ReceiveUser"
-  postUser(a) {
+  postUser() {
     return this.http
       .post<String>(
         "http://0.0.0.0:5010/submit/ReceiveUser",
@@ -44,11 +48,23 @@ export class FormComponent {
         //error
         response => {
           console.log("POST call in error", response);
+          this.returnFailure();
         },
         // return
         () => {
           console.log("The POST observable is now completed.");
+          this.returnSuccess(this.formComponent.value.username);
         }
       );
+  }
+
+  returnSuccess(a) {
+    this.askUser = false;
+    this.loaded = true;
+    this.username = a;
+  }
+  returnFailure() {
+    this.askUser = true;
+    this.loaded = false;
   }
 }

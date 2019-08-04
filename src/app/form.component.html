@@ -1,15 +1,33 @@
-<form [formGroup]="formComponent">
-  <label>Username: </label>
-  <input class="form-control" formControlName="Username" /> <br />
-  <br />
+<div *ngIf="this.loaded">
+    <h1>
+        Welcome {{ this.username }}
+    </h1>
+</div>
 
-  <label>Email address: </label>
-  <input class="form-control" formControlName="emailAddress" /> <br />
-  <br />
 
-  <label>Password: </label>
-  <input class="form-control" formControlName="password" /> <br />
-  <br />
 
-  <button (click)="onSubmit()">Update Profile</button>
-</form>
+
+<div *ngIf="this.askUser">
+
+    <h1>
+        Welcome new user
+    </h1>
+
+
+    <form [formGroup]="formComponent">
+        <label>Username: </label>
+        <input class="form-control" formControlName="username" /> <br />
+        <br />
+
+        <label>Email address: </label>
+        <input class="form-control" formControlName="emailAddress" /> <br />
+        <br />
+
+        <label>Password: </label>
+        <input class="form-control" formControlName="password" /> <br />
+        <br />
+
+        <button (click)="onSubmit()">Update Profile</button>
+    </form>
+
+</div>
