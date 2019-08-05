@@ -23,6 +23,7 @@ export class FormComponent {
   askUser = true;
   loaded = false;
   username = "";
+  failed = false;
 
   onSubmit() {
     this.postUser();
@@ -66,5 +67,6 @@ export class FormComponent {
   returnFailure() {
     this.askUser = true;
     this.loaded = false;
+    this.failed = true;
   }
 }
