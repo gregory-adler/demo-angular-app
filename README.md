@@ -11,5 +11,5 @@ It can be visited at: `http:localhost:4200`
 
 logic for form in:
 
-`app/form.component.ts`
-`app/form.component.html`
+`/src/app/form.component.ts`
+`/src/app/form.component.html`
