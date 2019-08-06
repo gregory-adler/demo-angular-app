@@ -20,9 +20,11 @@ export class FormComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
+  // state variables
   askUser = true;
   loaded = false;
   username = "";
+  userID = "";
   failed = false;
 
   onSubmit() {
@@ -45,21 +47,24 @@ export class FormComponent {
         //success
         val => {
           console.log("POST call successful value returned in body", val);
+          // console.log(val["reasonPhrase"]);
+          this.userID = val["reasonPhrase"];
         },
         //error
         response => {
           console.log("POST call in error", response);
           this.returnFailure();
+          console.log(response.body);
         },
         // return
         () => {
           console.log("The POST observable is now completed.");
-          this.returnSuccess(this.formComponent.value.username);
+          this.returnSuccess(this.formComponent.value.username, this.userID);
         }
       );
   }
 
-  returnSuccess(a) {
+  returnSuccess(a, id) {
     this.askUser = false;
     this.loaded = true;
     this.username = a;
